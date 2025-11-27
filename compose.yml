@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  moodle:
+    image: moodle45-cncn:2.0
+    container_name: cncn-moodle_45
+    restart: unless-stopped
+    ports:
+      - "8036:80"
+    environment:
+      MOODLE_DOCKER_WWWROOT: /var/www/html
+      MOODLE_USERNAME: $moodleuser
+      MOODLE_PASSWORD: "pass"
+      MOODLE_EMAIL: admin@example.com
+      MOODLE_SITE_NAME: "name"
+      MOODLE_DB_TYPE: pgsql
+      MOODLE_DB_HOST: $dbhost
+      MOODLE_DB_PORT: 5432
+      MOODLE_DB_NAME: $dbname
+      MOODLE_DB_USER: $username
+      MOODLE_DB_PASSWORD: yrZR1mFlb2K0QwGjTpLg
+
+    volumes:
+      - /var/docker/moodle/ltmoodle45/data:/var/www/moodledata
+      #- /var/docker/moodle/ltmoodle45/www:/var/www/html      #change only after the first load
+    networks:
+      - moodle-net
+      - postgres
+
+networks:
+  moodle-net:
+    driver: bridge
+  postgres:
+    external: true
+    name: postgres
