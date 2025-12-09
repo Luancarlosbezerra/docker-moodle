@@ -18,7 +18,7 @@ services:
       MOODLE_DB_PORT: 5432
       MOODLE_DB_NAME: $dbname
       MOODLE_DB_USER: $username
-      MOODLE_DB_PASSWORD: yrZR1mFlb2K0QwGjTpLg
+      MOODLE_DB_PASSWORD: $dbpass
 
     volumes:
       - /var/docker/moodle/ltmoodle45/data:/var/www/moodledata
